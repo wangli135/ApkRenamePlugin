@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        maven { url 'http://jcenter.bintray.com' }
+    }
+
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6'
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'idea'
+    id 'maven'
+    id 'maven-publish'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+dependencies {
+    compile localGroovy()
+    compile gradleApi()
+}
+
+publishing {
+    publications {
+        plugin(MavenPublication) {
+            from components.java
+            group 'com.xingfeng.plugin'
+            artifactId 'ApkRenamePlugin'
+            version '1.0.0'
+        }
+    }
+}
